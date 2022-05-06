@@ -1,0 +1,79 @@
+<h1>NgSwitch</h1>
+<input type="text" required [(ngModel)]="name" />
+<div [ngSwitch]="name">
+  <p *ngSwitchCase="'Aleja'">Soy Aleja</p>
+  <p *ngSwitchCase="'Mayra'">Soy Mayra</p>
+  <p *ngSwitchDefault>No coincide</p>
+
+</div>
+
+<h1>*NgFor con array de objetos</h1>
+<li  *ngFor="let p of products; index as i" >
+  {{p.name}}
+  <p> {{p.price}} </p>
+  <img width="200" [src]="p.image" alt="">
+</li>
+
+
+
+
+<h1>*NgFor</h1>
+<input type="text" required [(ngModel)]="newWarrior" />
+<button (click)="addName()" >AddName</button>
+
+<p *ngIf="warriors.length == 0">No hay ningún Warrior</p>
+<li  *ngFor="let w of warriors; index as i" >
+  {{i}}{{w}}
+  <button (click)="deleteWarrior(i)">Delete warrior</button>
+</li>
+<hr>
+
+<h1>NgIf</h1>
+<input type="text" required [(ngModel)]="name" />
+<p *ngIf="name === 'Aleja'">Soy Aleja</p>
+
+<p *ngIf="name === 'Mayra' && age === 25; else myBlock">Soy Mayra</p>
+<ng-template #myBlock>
+  <p>Nombre oculto porque no me gusta</p>
+</ng-template>
+<hr>
+
+<h1>NGMODEL</h1>
+<input type="text" required #nameInput = "ngModel" [(ngModel)]="name"  />
+  <p>Name {{ name }}</p>
+  <p>validate: {{ nameInput.valid }}</p>
+<hr>
+
+
+
+
+<h1>Another Events</h1>
+<div class="box" (scroll)="onScroll($event)">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto vitae aut tempore blanditiis deserunt rerum quas modi officia veniam aspernatur reiciendis assumenda pariatur, perspiciatis totam mollitia ea corporis sapiente eos.
+</div>
+
+<input type="text" [value]="name" (keyup)="onKeyUp($event)" />
+  <p>Name {{ name }}</p>
+<hr>
+
+
+
+<h1>Event bindings</h1>
+<p>Edad  {{age}} </p>
+<button (click)="incrementAge()">incrementAge</button>
+
+<button [disabled]="btnDisabled">Boton con bindings</button>
+<button (click)="toggleButton()">toggleButton</button>
+
+<hr>
+<h1>Property bindings</h1>
+<button [disabled]="btnDisabled">Boton con bindings</button>
+<input type="text" [value]="name">
+<img [src]="img" width= 100 alt="" srcset="">
+<progress [value]="age" max="80"></progress>
+<hr>
+
+<h2>String Interpolation</h2>
+<p> Hola yo soy {{name}} </p>
+
+
