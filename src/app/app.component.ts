@@ -16,6 +16,12 @@ export class AppComponent {
   warriors :String[]= ["Edwar", "Mauro" , "Jose" , "Mary", "Aleja" ]
   newWarrior = "";
 
+  box = {
+    width: 100,
+    height : 100,
+    background: 'red'
+  }
+
   products: product [] = [
     {
       name: 'EL mejor juguete',

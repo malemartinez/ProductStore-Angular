@@ -5,3 +5,31 @@
   border-radius: 5px;
   overflow: auto;
 }
+.products-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  img{
+    width: 100%;
+    border-radius: 10px;
+  }
+
+}
+.messsage-error{
+  background-color: rgba(255, 0, 0, 0.253);
+  color: white;
+  display: none;
+  &.active{
+    display: block;
+  }
+}
+.line-error{
+  height: 5;
+  border-bottom: 2px dotted;
+  &.valid{
+    border-color: rgba(0, 128, 0, 0.432);
+  }
+  &.invalid{
+    border-color: rgba(255, 0, 0, 0.541);
+  }
+}
