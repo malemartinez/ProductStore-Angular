@@ -1,3 +1,33 @@
+<app-products [product]="p" *ngFor="let p of products" ></app-products>
+
+
+
+
+
+
+<!-- componente de imagen -->
+<p><input type="text" [(ngModel)] = "img" /></p>
+<app-img (loaded)="onLoaded($event)" [imgChild]="img" ></app-img>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Formulario con Angular</h1>
+
+
+
+
+
+
 <h1>NgClass and NgStyle</h1>
 <input type="text" required #nameInput4 = "ngModel" [(ngModel)]="name"  />
 <hr  class="line-error"
@@ -122,5 +152,8 @@
 
 <h2>String Interpolation</h2>
 <p> Hola yo soy {{name}} </p>
+<p>
+  {{[1,2].reverse}}
+</p>
 
 

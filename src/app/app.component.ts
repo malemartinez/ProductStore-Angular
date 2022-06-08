@@ -9,9 +9,11 @@ import { product } from './products.model';
 })
 export class AppComponent {
   btnDisabled = true;
+
   name = "Aleja";
   age = 25;
-  img = "https://www.w3schools.com/howto/img_avatar.png"
+  img = ""
+  // img = "https://www.w3schools.com/howto/img_avatar.png"
 
   warriors :String[]= ["Edwar", "Mauro" , "Jose" , "Mary", "Aleja" ]
   newWarrior = "";
@@ -20,6 +22,11 @@ export class AppComponent {
     width: 100,
     height : 100,
     background: 'red'
+  }
+
+  // logica de eventos para oir componente hijo
+  onLoaded(img :string){
+    console.log("loaded del padre", img)
   }
 
   products: product [] = [
