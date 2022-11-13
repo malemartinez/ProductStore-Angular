@@ -1,3 +1,9 @@
-<img [src]="product.image" alt="">
-<h2> {{product.name}} </h2>
-<h3> {{product.price}} </h3>
+<!-- <img width="200" [src]="product.image" alt=""> -->
+<app-img
+  [imgChild]="product.image"></app-img>
+<h2> {{product.title}} </h2>
+<h3> {{product.price | currency}} </h3>
+<!-- uso de una directiva -->
+<p appHighlight >{{product.description}}</p>
+<button
+  (click)="onAddToCard()">Add to cart</button>

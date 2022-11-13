@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { product } from 'src/app/products.model';
 
 @Component({
@@ -13,6 +13,10 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
- @Input() product !: product; //esto lo hacemos para no inicializar ls vsrisble
+  @Input() product !: product; //esto lo hacemos para no inicializar ls vsrisble
+  @Output()addedProduct = new EventEmitter<product>();
 
+  onAddToCard(){
+    this.addedProduct.emit(this.product)
+ }
 }

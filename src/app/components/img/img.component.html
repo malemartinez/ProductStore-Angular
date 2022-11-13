@@ -1,6 +1,11 @@
-<p>{{imgChild}} </p>
+<!-- <p>{{imgChild}} </p> -->
 
-<img (load)="imgLoaded()" (error)="imgError()" [src]="imgChild" alt="" *ngIf="imgChild ; else myBlock">
+<img
+  (load)="imgLoaded()"
+  (error)="imgError()"
+  [src]="imgChild" alt=""
+  *ngIf="imgChild ; else myBlock">
+
 <ng-template #myBlock>
   <img [src]="imageDefault" alt="">
 </ng-template>

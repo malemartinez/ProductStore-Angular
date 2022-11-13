@@ -1,0 +1,134 @@
+<!-- componente de imagen -->
+<!-- <p><input type="text" [(ngModel)] = "img" /></p>
+<app-img (loaded)="onLoaded($event)" [imgChild]="img" ></app-img> -->
+
+<!-- <h1>Formulario con Angular</h1> -->
+
+
+<!-- <h1>NgClass and NgStyle</h1>
+<input type="text" required #nameInput4 = "ngModel" [(ngModel)]="name"  />
+<hr  class="line-error"
+[ngClass]="{
+  'valid': nameInput4.valid,
+  'invalid': nameInput4.invalid
+}" >
+<p class="messsage-error">
+  El campo es requerido
+</p>
+
+<h2>NgStyle</h2>
+<p>Lo usamos cuando queremos cambiarle varios estilos a un elemento HTML</p>
+<div class="boxStyle">
+  <div>
+    <input type="number" [(ngModel)]="box.width" />
+    <input type="number" [(ngModel)]="box.height" />
+    <input type="color" [(ngModel)]="box.background" />
+  </div>
+  <div>
+    <div [ngStyle]="{
+      'width.px': box.width,
+      'height.px': box.height,
+      'background-color': box.background,
+      'display': 'block'
+    }"></div>
+  </div>
+
+<hr>
+
+<h1>Dynamic Class and Style</h1>
+<input type="text" required #nameInput2 = "ngModel" [(ngModel)]="name"  />
+<p class="messsage-error" [class.active]="nameInput2.invalid" >
+  El campo es requerido
+</p>
+<h2>Inline Style</h2>
+<label for="">Nombre</label>
+<input type="text" required #nameInput3 = "ngModel" [(ngModel)]="name"  />
+<p [style.font-style] = "nameInput3.invalid ? 'italic' : 'normal'" >
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis deleniti quas asperiores porro quaerat animi
+</p>
+
+<hr>
+
+<h1>NgSwitch</h1>
+<input type="text" required [(ngModel)]="name" />
+<div [ngSwitch]="name">
+  <p *ngSwitchCase="'Aleja'">Soy Aleja</p>
+  <p *ngSwitchCase="'Mayra'">Soy Mayra</p>
+  <p *ngSwitchDefault>No coincide</p>
+
+</div>
+
+<h1>*NgFor con array de objetos</h1>
+<div class="products-grid">
+  <li  *ngFor="let p of products; index as i" >
+    {{p.name}}
+    <p> {{p.price}} </p>
+    <img [src]="p.image" alt="">
+  </li>
+
+</div>
+
+
+
+
+<h1>*NgFor</h1>
+<input type="text" required [(ngModel)]="newWarrior" />
+<button (click)="addName()" >AddName</button>
+
+<p *ngIf="warriors.length == 0">No hay ningún Warrior</p>
+<li  *ngFor="let w of warriors; index as i" >
+  {{i}}{{w}}
+  <button (click)="deleteWarrior(i)">Delete warrior</button>
+</li>
+<hr>
+
+<h1>NgIf</h1>
+<input type="text" required [(ngModel)]="name" />
+<p *ngIf="name === 'Aleja'">Soy Aleja</p>
+
+<p *ngIf="name === 'Mayra' && age === 25; else myBlock">Soy Mayra</p>
+<ng-template #myBlock>
+  <p>Nombre oculto porque no me gusta</p>
+</ng-template>
+<hr>
+
+<h1>NGMODEL</h1>
+<input type="text" required #nameInput = "ngModel" [(ngModel)]="name"  />
+  <p>Name {{ name }}</p>
+  <p>validate: {{ nameInput.valid }}</p>
+<hr>
+
+
+
+
+<h1>Another Events</h1>
+<div class="box" (scroll)="onScroll($event)">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto vitae aut tempore blanditiis deserunt rerum quas modi officia veniam aspernatur reiciendis assumenda pariatur, perspiciatis totam mollitia ea corporis sapiente eos.
+</div>
+
+<input type="text" [value]="name" (keyup)="onKeyUp($event)" />
+  <p>Name {{ name }}</p>
+<hr>
+
+
+
+<h1>Event bindings</h1>
+<p>Edad  {{age}} </p>
+<button (click)="incrementAge()">incrementAge</button>
+
+<button [disabled]="btnDisabled">Boton con bindings</button>
+<button (click)="toggleButton()">toggleButton</button>
+
+<hr>
+<h1>Property bindings</h1>
+<button [disabled]="btnDisabled">Boton con bindings</button>
+<input type="text" [value]="name">
+<img [src]="img" width= 100 alt="" srcset="">
+<progress [value]="age" max="80"></progress>
+<hr>
+
+<h2>String Interpolation</h2>
+<p> Hola yo soy {{name}} </p>
+<p>
+  {{[1,2].reverse}}
+</p> -->
