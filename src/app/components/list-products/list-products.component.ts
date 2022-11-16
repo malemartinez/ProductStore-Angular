@@ -13,6 +13,18 @@ export class ListProductsComponent implements OnInit {
   myProductsCard : product [] = [];
   products: product [] = []
   total:number = 0;
+  showProductDetail = false;
+  productChosen: product = {
+    id:0,
+    title:'',
+    price: 0,
+    images: [],
+    category: {
+      id: '',
+      name:''
+    },
+    description:''
+  } 
 
   constructor(
     private storeService: StoreService,
@@ -34,6 +46,17 @@ export class ListProductsComponent implements OnInit {
     console.log(product)
     this.storeService.addProduct(product)
     this.total = this.storeService.getTotal()
+  }
+
+  toggleProductDetail(){
+    this.showProductDetail = !this.showProductDetail
+  }
+
+  onShowDetail(id:number){
+    let prod:any = this.products.find(ele =>  ele.id == id);
+    console.log('id: ', prod);
+    this.productChosen = prod
+    this.toggleProductDetail()
   }
 
 }
