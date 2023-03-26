@@ -29,4 +29,8 @@ export class GetProductsService {
   updateProduct(id: string , data:UpdateProductDTO){
     return this.http.put<product>(`${this.apiUrl}/${id}` , data); 
   }
+  DeleteProduct(id: string){
+    return this.http.delete<boolean>(`${this.apiUrl}/${id}`); //depende de la API asi 
+    //se hace el delete. En este caso solo devuelve un boolean de si se eliminó o no.
+  }
 }
