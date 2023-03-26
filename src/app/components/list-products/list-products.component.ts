@@ -14,6 +14,9 @@ export class ListProductsComponent implements OnInit {
   products: product [] = []
   total:number = 0;
   showProductDetail = false;
+  limit = 10;
+  offset = 0;
+
   productChosen: product = {
     id:"0",
     title:'',
@@ -35,8 +38,10 @@ export class ListProductsComponent implements OnInit {
 
   ngOnInit(): void {
   // aqui inicializamos la peticion del servicio ya que es una peticion asincrona y no la podemos poner en el contructor
-  this.getProductsService.getAllProducts().subscribe(data =>
-    this.products = data)
+  // this.getProductsService.getAllProducts().subscribe(data =>
+  //   this.products = data)
+
+    this.LoadMoreProducts()
   }
 
 
@@ -103,5 +108,12 @@ export class ListProductsComponent implements OnInit {
         this.showProductDetail = false;
       })
   }
-
+  LoadMoreProducts(){
+    this.getProductsService.getAllProductsParams(this.limit , this.offset)
+    .subscribe(data => 
+      this.products = [...this.products , ...data]
+      // this.products.push(...data) otra forma de agregar al array de productos
+      )
+      this.offset += this.limit
+  }
 }

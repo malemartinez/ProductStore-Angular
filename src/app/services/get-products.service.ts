@@ -33,4 +33,7 @@ export class GetProductsService {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`); //depende de la API asi 
     //se hace el delete. En este caso solo devuelve un boolean de si se eliminó o no.
   }
+  getAllProductsParams(limit:number , offset :number){
+    return this.http.get<product[]>(this.apiUrl , { params: {limit,  offset} }  )
+   }
 }
