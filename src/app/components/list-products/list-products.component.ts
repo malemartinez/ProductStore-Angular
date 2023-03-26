@@ -40,7 +40,7 @@ export class ListProductsComponent implements OnInit {
   // aqui inicializamos la peticion del servicio ya que es una peticion asincrona y no la podemos poner en el contructor
   // this.getProductsService.getAllProducts().subscribe(data =>
   //   this.products = data)
-
+  // this.getProductsService.getAllProducts(this.limit , this.offset)
     this.LoadMoreProducts()
   }
 
