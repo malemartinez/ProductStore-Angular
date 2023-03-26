@@ -14,8 +14,9 @@
     <button (click)="toggleProductDetail()">
       Close
     </button>
+    <p>{{productChosen.title}}</p>
     <img [src]="productChosen.images[0]" alt="">
     <p>{{productChosen.description}}</p>
-
+    <button (click)="updateProduct()" >Actualizar</button>
   </div>
 </div>

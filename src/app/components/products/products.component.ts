@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
 
   @Input() product !: product; //esto lo hacemos para no inicializar ls vsrisble
   @Output()addedProduct = new EventEmitter<product>();
-  @Output()showDetailProduct = new EventEmitter<number>();
+  @Output()showDetailProduct = new EventEmitter<string>();
 
   onAddToCard(){
     this.addedProduct.emit(this.product)

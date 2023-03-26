@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { product , CreateProductDTO} from '../products.model';
+import { product , CreateProductDTO , UpdateProductDTO} from '../products.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +24,9 @@ export class GetProductsService {
   createProduct(data: CreateProductDTO){
     // La peticion post la hacemos de tipo Product porque cuando nos devuleva el product queremos que sea de ese tipo, aunque el que le enviamos es el DTO
     return this.http.post<product>(this.apiUrl , data); 
+  }
+
+  updateProduct(id: string , data:UpdateProductDTO){
+    return this.http.put<product>(`${this.apiUrl}/${id}` , data); 
   }
 }

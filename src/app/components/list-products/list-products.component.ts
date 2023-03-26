@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateProductDTO, product } from 'src/app/products.model';
+import { CreateProductDTO, product , UpdateProductDTO } from 'src/app/products.model';
 import { StoreService } from 'src/app/services/store.service';
 import { GetProductsService } from 'src/app/services/get-products.service';
 
@@ -15,7 +15,7 @@ export class ListProductsComponent implements OnInit {
   total:number = 0;
   showProductDetail = false;
   productChosen: product = {
-    id:0,
+    id:"0",
     title:'',
     price: 0,
     images: [],
@@ -52,7 +52,7 @@ export class ListProductsComponent implements OnInit {
     this.showProductDetail = !this.showProductDetail
   }
 
-  onShowDetail(id:number){
+  onShowDetail(id:string){
     let prod:any = this.products.find(ele =>  ele.id == id);
     console.log('id: ', prod);
     this.productChosen = prod
@@ -65,10 +65,10 @@ export class ListProductsComponent implements OnInit {
   }
 
   CreateProduct(){
-    let newProduct:CreateProductDTO = {
+    const newProduct:CreateProductDTO = {
       title:"Nuevo Producto",
       price: 15000,
-      images: [],
+      images: [`https://placeimg.com/640/480/any?random=${Math.random()}`],
       description:"Cualquier cosa",
       categoryId: "2"
     }
@@ -76,6 +76,21 @@ export class ListProductsComponent implements OnInit {
     this.getProductsService.createProduct(newProduct)
       .subscribe(data => {
         this.products.unshift(data)
+      })
+  }
+
+  updateProduct(){
+    const ChangeProduct:UpdateProductDTO = {
+      title:"Un nuevo titulo",
+    }
+    const id = this.productChosen.id
+
+    this.getProductsService.updateProduct(id , ChangeProduct)
+      .subscribe(data => {
+        console.log(data)
+        const prodIndex:any = this.products.findIndex(ele =>  ele.id == id);
+        this.products[prodIndex] = data;
+        this.productChosen = data;
       })
   }
 
