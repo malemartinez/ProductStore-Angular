@@ -3,6 +3,7 @@
    *ngIf="product.images.length > 0" [imgChild]="product.images[0]"></app-img>
 <h2> {{product.title}} </h2>
 <h3> {{product.price | currency}} </h3>
+<h3> {{product.taxes?? '' | currency}} </h3>
 <!-- uso de una directiva -->
 <p appHighlight >{{product.description}}</p>
 <button
