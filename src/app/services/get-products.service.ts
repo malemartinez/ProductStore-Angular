@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams , HttpErrorResponse, HttpStatusCode} from '@angular/common/http';
 import { product , CreateProductDTO , UpdateProductDTO} from '../products.model';
-import { retry } from 'rxjs/operators';
+import { retry, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,21 @@ export class GetProductsService {
 
   getProduct(id: string) {
     return this.http.get<product>(`${this.apiUrl}/${id}`)
+    .pipe(
+      catchError((err: HttpErrorResponse) => {
+        return this.handleErrors(err)
+      })
+    );
+  }
+
+  handleErrors(error: HttpErrorResponse)  {
+    if (error.status == HttpStatusCode.Forbidden)
+      return throwError(() => new Error ('No tiene permisos para realizar la solicitud.'));
+    if (error.status == HttpStatusCode.NotFound)
+      return throwError(() => new Error ('El producto no existe.'));
+    if (error.status == HttpStatusCode.InternalServerError)
+      return throwError(() => new Error ('Error en el servidor.'));
+    return throwError(() => new Error ('Un error inesperado ha ocurrido.'));
   }
 
   createProduct(data: CreateProductDTO){

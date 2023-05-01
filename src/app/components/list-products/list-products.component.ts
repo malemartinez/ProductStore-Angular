@@ -28,6 +28,7 @@ export class ListProductsComponent implements OnInit {
     },
     description:''
   } 
+  statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
   constructor(
     private storeService: StoreService,
@@ -58,16 +59,30 @@ export class ListProductsComponent implements OnInit {
   }
 
   onShowDetail(id:string){
-    let prod:any = this.products.find(ele =>  ele.id == id);
-    console.log('id: ', prod);
-    this.productChosen = prod
-    this.toggleProductDetail()
+    //let prod:any = this.products.find(ele =>  ele.id == id);
+    //console.log('id: ', prod);
+    //this.productChosen = prod
+    //this.toggleProductDetail()
     // para traer los detalles en una peticion get
-    // this.getProductsService.getProduct(id)
-    // .subscribe(data => {
-    //   this.toggleProductDetail();
-    //   this.productChosen = data;
+    this.getProductsService.getProduct(id)
+    .subscribe({
+      next: (d) => this.showDetailOk(d),
+      error: (e) => this.showDetailError(e),
+      complete: () => console.info('complete')
+  })
+   
   }
+  showDetailOk(data: product) {
+    this.statusDetail = 'success';
+    console.log('producto obtenido: ', data);
+    this.toggleProductDetail();
+    this.productChosen = data;
+  }
+  showDetailError(e: any) {
+    this.statusDetail = 'error';
+    this.toggleProductDetail();
+    console.error(e)
+ }
 
   CreateProduct(){
     const newProduct:CreateProductDTO = {
