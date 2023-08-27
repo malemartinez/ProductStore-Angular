@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs';
 import { CreateProductDTO, product , UpdateProductDTO } from 'src/app/products.model';
 import { StoreService } from 'src/app/services/store.service';
 import { GetProductsService } from 'src/app/services/get-products.service';
@@ -83,6 +84,31 @@ export class ListProductsComponent implements OnInit {
     this.toggleProductDetail();
     console.error(e)
  }
+
+ //Evitando el callback hell
+ readAndUpdate(id: string) {
+  // Esto se hace cuando dependo primero que se ejecute un servicio para hacer el otro. En este caso
+  // se necesita el id para poder hacer la actualizacion
+  // Entonces primero se llama a un GET y despues al UPDATE
+
+  this.getProductsService.getProduct(id)
+  .pipe(
+    switchMap((product) => this.getProductsService.updateProduct(product.id, {title: 'change'})),
+  )
+  .subscribe(data => {
+    console.log(data);
+  });
+
+  // cuando no depende de otra peticion y quiero que se ejecuten en paralelo ambas peticiones
+  // puedo usar el metodo zip que me permite adjuntar y recibir peticiones al mismo tiempo
+
+  this.getProductsService.fetchReadAndUpdate(id, {title: 'change'})
+  .subscribe(response => {
+    const read = response[0]
+    const update = response[1]
+  })
+
+}
 
   CreateProduct(){
     const newProduct:CreateProductDTO = {

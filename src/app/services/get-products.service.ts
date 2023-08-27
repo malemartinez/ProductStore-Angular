@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { zip } from 'rxjs';
 import { HttpClient, HttpParams , HttpErrorResponse, HttpStatusCode} from '@angular/common/http';
 import { product , CreateProductDTO , UpdateProductDTO} from '../products.model';
 import { retry, catchError, map } from 'rxjs/operators';
@@ -67,5 +68,13 @@ export class GetProductsService {
           taxes: .19 * item.price
         }
       })))
+   }
+
+   // puedo usar el metodo zip que me permite adjuntar y recibir peticiones al mismo tiempo
+   fetchReadAndUpdate(id:string , data:UpdateProductDTO){
+    return zip(
+      this.getProduct(id),
+      this.updateProduct(id, data)
+    )
    }
 }
