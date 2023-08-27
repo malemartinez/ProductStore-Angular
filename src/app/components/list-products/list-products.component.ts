@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs';
-import { CreateProductDTO, product , UpdateProductDTO } from 'src/app/products.model';
+import { CreateProductDTO, product , UpdateProductDTO } from 'src/models/products.model';
 import { StoreService } from 'src/app/services/store.service';
 import { GetProductsService } from 'src/app/services/get-products.service';
 

@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { zip } from 'rxjs';
 import { HttpClient, HttpParams , HttpErrorResponse, HttpStatusCode} from '@angular/common/http';
-import { product , CreateProductDTO , UpdateProductDTO} from '../products.model';
+import { product , CreateProductDTO , UpdateProductDTO} from '../../models/products.model';
 import { retry, catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetProductsService {
 
-  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/products';
+  private apiUrl = `${environment.API_URL}/api/products`;
 
   constructor(
     private http : HttpClient

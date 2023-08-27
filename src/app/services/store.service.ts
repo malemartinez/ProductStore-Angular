@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs'; //sirve para crerar observables para reactividad
-import { product } from '../products.model';
+import { product } from '../../models/products.model';
 
 @Injectable({
   providedIn: 'root'
