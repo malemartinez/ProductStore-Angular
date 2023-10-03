@@ -8,7 +8,8 @@ import { UsersService } from './services/users.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = " "
+  title = " ";
+  token ="";
 
   constructor(
     private authService: AuthService ,  private usersService: UsersService
@@ -24,6 +25,15 @@ export class AppComponent {
   }
   login(){
     this.authService.login("maleja@mail.com", "ByeHolis")
-    .subscribe(res => console.log(res.access_token))
+    .subscribe(res => {
+      this.token = res.access_token
+      console.log(res.access_token)
+    })
+  }
+
+  getProfile(){
+    this.authService.profile(this.token).subscribe(res => {
+      console.log(res)
+    })
   }
 }
