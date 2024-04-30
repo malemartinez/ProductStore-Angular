@@ -21,10 +21,12 @@ export class AuthService {
     // otra forma de enviar headers
     const headers = new HttpHeaders();
     headers.set("Authorization", `Bearer ${token}`);
-    
+
     return this.http.get(`${this.apiUrl}/profile` , {
+      // esta es una forma de hacer los headers
       headers:{
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        // 'Content-type': 'application/json'
       }
     })
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
+import { User } from 'src/models/users.model';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,13 @@ import { UsersService } from './services/users.service';
 export class AppComponent {
   title = " ";
   token ="";
-
+  // profile : User = {
+  //   id: '',
+  //   email: '',
+  //   password: '',
+  //   name: ''
+  // };
+  profile : any;
   constructor(
     private authService: AuthService ,  private usersService: UsersService
   ){
@@ -28,12 +35,14 @@ export class AppComponent {
     .subscribe(res => {
       this.token = res.access_token
       console.log(res.access_token)
+      this.getProfile();
     })
   }
 
   getProfile(){
-    this.authService.profile(this.token).subscribe(res => {
-      console.log(res)
+    this.authService.profile(this.token)
+    .subscribe(res => {
+       this.profile = res;
     })
   }
 }
