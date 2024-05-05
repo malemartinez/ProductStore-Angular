@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { zip } from 'rxjs';
 import { HttpClient, HttpParams , HttpErrorResponse, HttpStatusCode} from '@angular/common/http';
-import { product , CreateProductDTO , UpdateProductDTO} from '../../models/products.model';
+import { Product , CreateProductDTO , UpdateProductDTO} from '../../models/products.model';
 import { retry, catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class GetProductsService {
 
-  private apiUrl = `${environment.API_URL}/api/products`;
+  private apiUrl = `${environment.API_URL}/api/v1/products`;
 
   constructor(
     private http : HttpClient
@@ -24,14 +24,14 @@ export class GetProductsService {
       params = params.set("limit", limit)
       params = params.set("offset", offset)
     }
-   return this.http.get<product[]>(this.apiUrl , {params})
-   .pipe( 
+   return this.http.get<Product[]>(this.apiUrl , {params})
+   .pipe(
     retry(2) //Se usa para hacer varias veces la peticion al servidor por si este falla en la primera request
   );
   }
 
   getProduct(id: string) {
-    return this.http.get<product>(`${this.apiUrl}/${id}`)
+    return this.http.get<Product>(`${this.apiUrl}/${id}`)
     .pipe(
       catchError((err: HttpErrorResponse) => {
         return this.handleErrors(err)
@@ -51,18 +51,18 @@ export class GetProductsService {
 
   createProduct(data: CreateProductDTO){
     // La peticion post la hacemos de tipo Product porque cuando nos devuleva el product queremos que sea de ese tipo, aunque el que le enviamos es el DTO
-    return this.http.post<product>(this.apiUrl , data); 
+    return this.http.post<Product>(this.apiUrl , data);
   }
 
   updateProduct(id: string , data:UpdateProductDTO){
-    return this.http.put<product>(`${this.apiUrl}/${id}` , data); 
+    return this.http.put<Product>(`${this.apiUrl}/${id}` , data);
   }
   DeleteProduct(id: string){
-    return this.http.delete<boolean>(`${this.apiUrl}/${id}`); //depende de la API asi 
+    return this.http.delete<boolean>(`${this.apiUrl}/${id}`); //depende de la API asi
     //se hace el delete. En este caso solo devuelve un boolean de si se eliminó o no.
   }
   getAllProductsParams(limit:number , offset :number){
-    return this.http.get<product[]>(this.apiUrl , { params: {limit,  offset} }  )
+    return this.http.get<Product[]>(this.apiUrl , { params: {limit,  offset} }  )
     .pipe(
       map(products => products.map(item => {
         return {

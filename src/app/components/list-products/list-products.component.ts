@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs';
-import { CreateProductDTO, product , UpdateProductDTO } from 'src/models/products.model';
+import { CreateProductDTO, Product , UpdateProductDTO } from 'src/models/products.model';
 import { StoreService } from 'src/app/services/store.service';
 import { GetProductsService } from 'src/app/services/get-products.service';
 
@@ -11,24 +11,25 @@ import { GetProductsService } from 'src/app/services/get-products.service';
 })
 export class ListProductsComponent implements OnInit {
 
-  myProductsCard : product [] = [];
-  products: product [] = []
+  myProductsCard : Product [] = [];
+  products: Product [] = []
   total:number = 0;
   showProductDetail = false;
   limit = 10;
   offset = 0;
 
-  productChosen: product = {
+  productChosen: Product = {
     id:"0",
     title:'',
     price: 0,
     images: [],
     category: {
       id: '',
-      name:''
+      name:'',
+      image:''
     },
     description:''
-  } 
+  }
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
   constructor(
@@ -49,7 +50,7 @@ export class ListProductsComponent implements OnInit {
 
 
 
-  onAddedShoppingCart(product : product){
+  onAddedShoppingCart(product : Product){
     console.log(product)
     this.storeService.addProduct(product)
     this.total = this.storeService.getTotal()
@@ -71,9 +72,9 @@ export class ListProductsComponent implements OnInit {
       error: (e) => this.showDetailError(e),
       complete: () => console.info('complete')
   })
-   
+
   }
-  showDetailOk(data: product) {
+  showDetailOk(data: Product) {
     this.statusDetail = 'success';
     console.log('producto obtenido: ', data);
     this.toggleProductDetail();
@@ -151,7 +152,7 @@ export class ListProductsComponent implements OnInit {
   }
   LoadMoreProducts(){
     this.getProductsService.getAllProductsParams(this.limit , this.offset)
-    .subscribe(data => 
+    .subscribe(data =>
       this.products = [...this.products , ...data]
       // this.products.push(...data) otra forma de agregar al array de productos
       )

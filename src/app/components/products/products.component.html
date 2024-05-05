@@ -1,6 +1,7 @@
 <!-- <img width="200" [src]="product.image" alt=""> -->
 <app-img
-   *ngIf="product.images.length > 0" [imgChild]="product.images[0]"></app-img>
+   *ngIf="product.images.length > 0" [imgChild]="product.images[0]">
+</app-img>
 <h2> {{product.title}} </h2>
 <h3> {{product.price | currency}} </h3>
 <h3> {{product.taxes?? '' | currency}} </h3>

@@ -1,6 +1,11 @@
+// export interface Category{
+//   id:string,
+//   name:string,
+// }
 export interface Category{
   id:string,
   name:string,
+  image:string,
 }
 export interface product{
   id:string,
@@ -11,6 +16,14 @@ export interface product{
   description:string,
   taxes?:number
 
+}
+export interface Product{
+    id:string,
+    title:string,
+    price: number,
+    description:string,
+    category:Category,
+    images: string[],
 }
 export interface CreateProductDTO extends Omit<product ,"id" | "category"> {
   categoryId:String,
