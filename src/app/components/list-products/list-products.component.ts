@@ -68,8 +68,8 @@ export class ListProductsComponent implements OnInit {
     // para traer los detalles en una peticion get
     this.getProductsService.getProduct(id)
     .subscribe({
-      next: (d) => this.showDetailOk(d),
-      error: (e) => this.showDetailError(e),
+      next: (d: Product) => this.showDetailOk(d),
+      error: (e: any) => this.showDetailError(e),
       complete: () => console.info('complete')
   })
 
@@ -94,9 +94,9 @@ export class ListProductsComponent implements OnInit {
 
   this.getProductsService.getProduct(id)
   .pipe(
-    switchMap((product) => this.getProductsService.updateProduct(product.id, {title: 'change'})),
+    switchMap((product:Product) => this.getProductsService.updateProduct(product.id, {title: 'change'})),
   )
-  .subscribe(data => {
+  .subscribe((data: any) => {
     console.log(data);
   });
 
@@ -104,7 +104,7 @@ export class ListProductsComponent implements OnInit {
   // puedo usar el metodo zip que me permite adjuntar y recibir peticiones al mismo tiempo
 
   this.getProductsService.fetchReadAndUpdate(id, {title: 'change'})
-  .subscribe(response => {
+  .subscribe((response: any[]) => {
     const read = response[0]
     const update = response[1]
   })
@@ -116,12 +116,15 @@ export class ListProductsComponent implements OnInit {
       title:"Nuevo Producto",
       price: 15000,
       images: [`https://placeimg.com/640/480/any?random=${Math.random()}`],
-      description:"Cualquier cosa",
+      description:`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Quisque scelerisque porta nisl id euismod. Duis congue ante vehicula eros imperdiet,
+              vitae pharetra eros venenatis. Vivamus sollicitudin hendrerit nulla ut volutpat.
+              Nullam ut malesuada est. Donec eleifend dignissim nunc, vel cursus mauris.`,
       categoryId: "2"
     }
 
     this.getProductsService.createProduct(newProduct)
-      .subscribe(data => {
+      .subscribe((data: Product) => {
         this.products.unshift(data)
       })
   }
@@ -133,7 +136,7 @@ export class ListProductsComponent implements OnInit {
     const id = this.productChosen.id
 
     this.getProductsService.updateProduct(id , ChangeProduct)
-      .subscribe(data => {
+      .subscribe((data: Product) => {
         console.log(data)
         const prodIndex:any = this.products.findIndex(ele =>  ele.id == id);
         this.products[prodIndex] = data;
@@ -143,7 +146,7 @@ export class ListProductsComponent implements OnInit {
   deleteProduct(){
     const id = this.productChosen.id
     this.getProductsService.DeleteProduct(id)
-      .subscribe(data => {
+      .subscribe((data: any) => {
         console.log(data)
         const prodIndex:any = this.products.findIndex(ele =>  ele.id == id);
         this.products.splice(prodIndex, 1)
@@ -152,10 +155,11 @@ export class ListProductsComponent implements OnInit {
   }
   LoadMoreProducts(){
     this.getProductsService.getAllProductsParams(this.limit , this.offset)
-    .subscribe(data =>
+    .subscribe((data: any) =>
       this.products = [...this.products , ...data]
       // this.products.push(...data) otra forma de agregar al array de productos
       )
       this.offset += this.limit
   }
+
 }

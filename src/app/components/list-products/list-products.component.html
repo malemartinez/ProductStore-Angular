@@ -16,7 +16,13 @@
       Close
     </button>
     <p>{{productChosen.title}}</p>
-    <img [src]="productChosen.images[0]" alt="">
+
+    <swiper [slidesPerView]="3">
+      <ng-template  swiperSlide *ngFor="let img of productChosen.images">
+        <img class="imgProduct" [src]="img" alt="">
+      </ng-template>
+    </swiper>
+
     <p>{{productChosen.description}}</p>
     <button (click)="updateProduct()" >Actualizar</button>
     <button (click)="deleteProduct()" >Eliminar</button>
