@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { switchMap } from 'rxjs';
 import { CreateProductDTO, Product , UpdateProductDTO } from 'src/models/products.model';
 import { StoreService } from 'src/app/services/store.service';
@@ -12,11 +12,12 @@ import { GetProductsService } from 'src/app/services/get-products.service';
 export class ListProductsComponent implements OnInit {
 
   myProductsCard : Product [] = [];
-  products: Product [] = []
+  @Input() products: Product [] = []
   total:number = 0;
   showProductDetail = false;
-  limit = 10;
-  offset = 0;
+  @Output() LoadMoreProducts =  new EventEmitter<string>()
+  // limit = 10;
+  // offset = 0;
 
   productChosen: Product = {
     id:"0",
@@ -44,7 +45,7 @@ export class ListProductsComponent implements OnInit {
   // this.getProductsService.getAllProducts().subscribe(data =>
   //   this.products = data)
   // this.getProductsService.getAllProducts(this.limit , this.offset)
-    this.LoadMoreProducts()
+    // this.LoadMoreProducts()
   }
 
 
@@ -153,13 +154,17 @@ export class ListProductsComponent implements OnInit {
         this.showProductDetail = false;
       })
   }
-  LoadMoreProducts(){
-    this.getProductsService.getAllProductsParams(this.limit , this.offset)
-    .subscribe((data: any) =>
-      this.products = [...this.products , ...data]
-      // this.products.push(...data) otra forma de agregar al array de productos
-      )
-      this.offset += this.limit
+  // LoadMoreProducts(){
+  //   this.getProductsService.getAllProductsParams(this.limit , this.offset)
+  //   .subscribe((data: any) =>
+  //     this.products = [...this.products , ...data]
+  //     // this.products.push(...data) otra forma de agregar al array de productos
+  //     )
+  //     this.offset += this.limit
+  // }
+  MoreProductsButton(){
+    this.LoadMoreProducts.emit()
   }
+
 
 }

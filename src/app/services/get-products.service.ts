@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class GetProductsService {
 
-  private apiUrl = `${environment.API_URL}/api/v1/products`;
+  private apiUrl = `${environment.API_URL}/api/v1`;
 
   constructor(
     private http : HttpClient
@@ -24,19 +24,28 @@ export class GetProductsService {
       params = params.set("limit", limit)
       params = params.set("offset", offset)
     }
-   return this.http.get<Product[]>(this.apiUrl , {params})
+   return this.http.get<Product[]>( `${this.apiUrl}/products`, {params})
    .pipe(
     retry(2) //Se usa para hacer varias veces la peticion al servidor por si este falla en la primera request
   );
   }
 
   getProduct(id: string) {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`)
+    return this.http.get<Product>(`${this.apiUrl}/products/${id}`)
     .pipe(
       catchError((err: HttpErrorResponse) => {
         return this.handleErrors(err)
       })
     );
+  }
+
+  getCategoryProducts(categoryID:string , limit?:number , offset? :number){
+    let params = new HttpParams();
+    if(limit && offset){
+      params = params.set("limit", limit)
+      params = params.set("offset", offset)
+    }
+   return this.http.get<Product[]>( `${this.apiUrl}/categories/${categoryID}/products`, {params})
   }
 
   handleErrors(error: HttpErrorResponse)  {
@@ -51,20 +60,20 @@ export class GetProductsService {
 
   createProduct(data: CreateProductDTO){
     // La peticion post la hacemos de tipo Product porque cuando nos devuleva el product queremos que sea de ese tipo, aunque el que le enviamos es el DTO
-    return this.http.post<Product>(this.apiUrl , data);
+    return this.http.post<Product>(`${this.apiUrl}/products` , data);
   }
 
   updateProduct(id: string , data:UpdateProductDTO){
-    return this.http.put<Product>(`${this.apiUrl}/${id}` , data);
+    return this.http.put<Product>(`${this.apiUrl}/products/${id}` , data);
   }
   DeleteProduct(id: string){
-    return this.http.delete<boolean>(`${this.apiUrl}/${id}`); //depende de la API asi
+    return this.http.delete<boolean>(`${this.apiUrl}/products/${id}`); //depende de la API asi
     //se hace el delete. En este caso solo devuelve un boolean de si se eliminó o no.
   }
   getAllProductsParams(limit:number , offset :number){
-    return this.http.get<Product[]>(this.apiUrl , { params: {limit,  offset} }  )
+    return this.http.get<Product[]>(`${this.apiUrl}/products` , { params: {limit,  offset} }  )
     .pipe(
-      map(products => products.map(item => {
+      map(products => products.map(item=> {
         return {
           ...item,
           taxes: .19 * item.price
