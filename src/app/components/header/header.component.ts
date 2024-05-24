@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { StoreService } from 'src/app/services/store.service';
@@ -39,20 +40,20 @@ export class HeaderComponent implements OnInit {
 
   login(){
     this.authService.login("maleja@mail.com", "ByeHolis")
+    .pipe(
+      switchMap( token =>{
+        this.token = token.access_token
+        console.log(token.access_token)
+        return this.authService.profile(this.token)
+      }
+      ))
     .subscribe(res => {
-      this.token = res.access_token
-      console.log(res.access_token)
-      this.getProfile();
+      this.profile = res;
+       console.log(res)
+
     })
   }
 
-  getProfile(){
-    this.authService.profile(this.token)
-    .subscribe(res => {
-       this.profile = res;
-       console.log(res)
-    })
-  }
 
   toggleMenu(){
     this.activeMenu = !this.activeMenu
