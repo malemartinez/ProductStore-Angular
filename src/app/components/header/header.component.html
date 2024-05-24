@@ -42,7 +42,12 @@
       </ul>
     </nav>
     <div class="info">
-      <div class="account">user</div>
+      <div class="account">
+        <button *ngIf="!token; else  elseBock "  (click)="login()">Login</button>
+        <ng-template #elseBock>{{profile?.name}}</ng-template>
+      </div>
+      <!-- <button  (click)="createUser()">Crear usuario</button> -->
+      <!-- <button (click)="getProfile()">Perfil</button> -->
       <div>
         <a href="">
           <img src="../../../assets/icon_shopping_cart.svg" alt="logo">
