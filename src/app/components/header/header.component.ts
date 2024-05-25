@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   activeMenu : boolean = false;
   counter = 0;
 
-  token ="";
   profile : User | null = null;
 
   constructor(private storeService:StoreService , private authService: AuthService ,  private usersService: UsersService) {

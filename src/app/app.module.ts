@@ -24,6 +24,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ErrorHandlerInterceptor } from './Interceptors/error-handler.interceptor';
+import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -54,8 +55,15 @@ import { ErrorHandlerInterceptor } from './Interceptors/error-handler.intercepto
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorHandlerInterceptor
-    } ],
+      useClass: ErrorHandlerInterceptor,
+      multi:true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
