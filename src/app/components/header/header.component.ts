@@ -39,18 +39,17 @@ export class HeaderComponent implements OnInit {
   }
 
   login(){
-    this.authService.login("maleja@mail.com", "ByeHolis")
-    .pipe(
-      switchMap( token =>{
-        this.token = token.access_token
-        console.log(token.access_token)
-        return this.authService.profile(this.token)
-      }
-      ))
-    .subscribe(res => {
-      this.profile = res;
-       console.log(res)
-
+    // this.authService.login("maleja@mail.com", "ByeHolis")
+    // .pipe(
+    //   switchMap( token =>{
+    //     this.token = token.access_token
+    //     console.log(token.access_token)
+    //     return this.authService.profile(this.token)
+    //   }
+    //   ))
+    this.authService.loginAndGet("maleja@mail.com", "ByeHolis")
+    .subscribe(user => {
+      this.profile = user
     })
   }
 
