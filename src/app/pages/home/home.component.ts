@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
 
 
   constructor(
-    private storeService: StoreService,
     private getProductsService : GetProductsService
     ) {
 
@@ -28,9 +27,9 @@ export class HomeComponent implements OnInit {
 
   LoadMoreProducts(){
     this.getProductsService.getAllProductsParams(this.limit , this.offset)
-    .subscribe((data: any) =>
-      this.products = [...this.products , ...data]
-      // this.products.push(...data) otra forma de agregar al array de productos
+    .subscribe((data) =>
+      //  this.products = [...this.products , ...data]
+       this.products.push(...data) //otra forma de agregar al array de productos
       )
       this.offset += this.limit
   }

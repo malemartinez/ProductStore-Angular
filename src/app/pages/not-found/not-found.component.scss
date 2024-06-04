@@ -1,0 +1,51 @@
+.NotFoundContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 70vh;
+  text-align: center;
+}
+.title-principal{
+  font-size: 20px;
+}
+.pageNotFound{
+  letter-spacing: 3px;
+}
+.container-img-error{
+  position: relative;
+}
+
+img{
+  width: 200px;
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  left: calc( 50% - 10px);
+  bottom: 0px;
+}
+.number404{
+  font-size: 80px;
+  line-height: 80px;
+}
+.text-container{
+  margin-top: 120px;
+}
+.text-container a{
+  color: white;
+  font-size: 16px;
+  margin-left: 5px;
+  font-weight: bold;
+}
+.text-container a:hover{
+  text-decoration: underline;
+}
+p{
+  font-size: 12px;
+}
+.animated {
+  animation-duration: 2.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}

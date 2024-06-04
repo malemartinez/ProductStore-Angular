@@ -10,9 +10,10 @@
       (click)="toggleMenu()"
       class="close-button">Close</button>
     <ul>
-      <li><a href="">All</a></li>
-      <li><a href="">Clothes</a></li>
-      <li><a href="">Electronics</a></li>
+      <li><a routerLink="home">All</a></li>
+      <li *ngFor="let c of categories">
+        <a [routerLink]="['/category' , c.id]" >{{c.name}}</a>
+      </li>
     </ul>
   </nav>
 
@@ -36,9 +37,10 @@
         <img src="../../../assets/logo_yard_sale.svg" alt="logo">
       </a>
       <ul>
-        <li><a href="">All</a></li>
-        <li><a href="">Clothes</a></li>
-        <li><a href="">Electronics</a></li>
+        <li><a routerLinkActive="ActiveLinkMenu" routerLink="home">All</a></li>
+        <li *ngFor="let c of categories">
+          <a routerLinkActive="ActiveLinkMenu"  [routerLink]="['/category' , c.id]" >{{c.name}}</a>
+        </li>
       </ul>
     </nav>
     <div class="info">

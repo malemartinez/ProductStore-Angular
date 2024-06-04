@@ -15,7 +15,7 @@ export class ListProductsComponent implements OnInit {
   @Input() products: Product [] = []
   total:number = 0;
   showProductDetail = false;
-  @Output() LoadMoreProducts =  new EventEmitter<string>()
+  @Output() LoadMoreProducts =  new EventEmitter()
   // limit = 10;
   // offset = 0;
 
@@ -154,7 +154,7 @@ export class ListProductsComponent implements OnInit {
         this.showProductDetail = false;
       })
   }
-  // LoadMoreProducts(){
+  // MoreProductsButton(){
   //   this.getProductsService.getAllProductsParams(this.limit , this.offset)
   //   .subscribe((data: any) =>
   //     this.products = [...this.products , ...data]
@@ -163,7 +163,7 @@ export class ListProductsComponent implements OnInit {
   //     this.offset += this.limit
   // }
   MoreProductsButton(){
-    this.LoadMoreProducts.emit()
+    this.LoadMoreProducts.emit();
   }
 
 

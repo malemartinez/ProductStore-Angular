@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 import { StoreService } from 'src/app/services/store.service';
 import { UsersService } from 'src/app/services/users.service';
+import { Category } from 'src/models/products.model';
 import { User } from 'src/models/users.model';
 
 @Component({
@@ -15,16 +17,30 @@ export class HeaderComponent implements OnInit {
 
   activeMenu : boolean = false;
   counter = 0;
-
+  categories : Category[] = [];
   profile : User | null = null;
 
-  constructor(private storeService:StoreService , private authService: AuthService ,  private usersService: UsersService) {
+
+  constructor(
+    private storeService:StoreService ,
+    private authService: AuthService ,
+    private usersService: UsersService,
+    private categoriesService:CategoriesService
+  ) {
 
   }
 
   ngOnInit(): void {
     this.storeService.myCart$.subscribe(products => {
       this.counter = products.length
+    })
+    this.getAllCategories()
+  }
+
+  getAllCategories(){
+    this.categoriesService.getAll()
+    .subscribe(data =>{
+      this.categories = data
     })
   }
 

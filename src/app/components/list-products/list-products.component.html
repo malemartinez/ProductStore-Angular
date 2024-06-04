@@ -9,7 +9,6 @@
   (showDetailProduct)="onShowDetail($event)" ></app-products>
 </div>
 <button (click)="MoreProductsButton()">Cargar Mas</button>
-
 <div class="product-detail" [class.active] = "showProductDetail">
   <div *ngIf = "productChosen">
     <button (click)="toggleProductDetail()">
