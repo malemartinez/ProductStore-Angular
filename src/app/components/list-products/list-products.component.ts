@@ -12,7 +12,12 @@ import { GetProductsService } from 'src/app/services/get-products.service';
 export class ListProductsComponent implements OnInit {
 
   myProductsCard : Product [] = [];
-  @Input() products: Product [] = []
+  @Input() products: Product [] = [];
+  @Input() set productID(id:string|null){
+    if(id){
+      this.onShowDetail(id)
+    }
+  }
   total:number = 0;
   showProductDetail = false;
   @Output() LoadMoreProducts =  new EventEmitter()

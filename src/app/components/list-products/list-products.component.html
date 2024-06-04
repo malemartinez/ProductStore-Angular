@@ -1,29 +1,28 @@
-<p>La cantidad agregada es  {{myProductsCard.length}} </p>
+<p>La cantidad agregada es {{myProductsCard.length}} </p>
 <p> El total es: ${{total}} </p>
 
 <button (click)="CreateProduct()">Create New Product</button>
 
 <div class="products-grid">
-  <app-products [product]="p" *ngFor="let p of products"
-  (addedProduct)="onAddedShoppingCart($event)"
-  (showDetailProduct)="onShowDetail($event)" ></app-products>
+  <app-products [product]="p" *ngFor="let p of products" (addedProduct)="onAddedShoppingCart($event)"
+    (showDetailProduct)="onShowDetail($event)"></app-products>
 </div>
 <button (click)="MoreProductsButton()">Cargar Mas</button>
-<div class="product-detail" [class.active] = "showProductDetail">
-  <div *ngIf = "productChosen">
+<div class="product-detail" [class.active]="showProductDetail">
+  <div *ngIf="productChosen">
     <button (click)="toggleProductDetail()">
       Close
     </button>
     <p>{{productChosen.title}}</p>
 
     <swiper [slidesPerView]="3">
-      <ng-template  swiperSlide *ngFor="let img of productChosen.images">
+      <ng-template swiperSlide *ngFor="let img of productChosen.images">
         <img class="imgProduct" [src]="img" alt="">
       </ng-template>
     </swiper>
 
     <p>{{productChosen.description}}</p>
-    <button (click)="updateProduct()" >Actualizar</button>
-    <button (click)="deleteProduct()" >Eliminar</button>
+    <button (click)="updateProduct()">Actualizar</button>
+    <button (click)="deleteProduct()">Eliminar</button>
   </div>
 </div>

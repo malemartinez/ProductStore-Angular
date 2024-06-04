@@ -25,6 +25,7 @@ import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ErrorHandlerInterceptor } from './Interceptors/error-handler.interceptor';
 import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.interceptor';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
     LoginComponent,
     RegisterComponent,
     RecoveryComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

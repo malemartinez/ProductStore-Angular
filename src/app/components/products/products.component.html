@@ -1,13 +1,14 @@
 <!-- <img width="200" [src]="product.image" alt=""> -->
-<app-img
-   *ngIf="product.images.length > 0" [imgChild]="product.images[0]">
-</app-img>
+<a [routerLink]="['/product' , product.id]">
+  <app-img *ngIf="product.images.length > 0" [imgChild]="product.images[0]">
+  </app-img>
+</a>
 <h2> {{product.title}} </h2>
 <h3> {{product.price | currency}} </h3>
 <h3> {{product.taxes?? '' | currency}} </h3>
 <!-- uso de una directiva -->
-<p appHighlight >{{product.description}}</p>
-<button
-  (click)="onAddToCard()">Add to cart</button>
-<button
-  (click)="onShowDetailProduct()">Ver detalle</button>
+<p appHighlight>{{product.description}}</p>
+<button (click)="onAddToCard()">Add to cart</button>
+<!-- <button
+  (click)="onShowDetailProduct()">Ver detalle</button> -->
+<a routerLink="/home" [queryParams]="{product: product.id}">Ver Detalle</a>
