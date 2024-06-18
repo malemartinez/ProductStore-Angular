@@ -9,6 +9,10 @@ const routes: Routes = [
     loadChildren: () => import('./website/website.module').then(m => m.WebsiteModule)
   },
   {
+    path: 'cms',
+    loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule)
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }

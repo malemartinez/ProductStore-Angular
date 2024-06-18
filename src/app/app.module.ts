@@ -6,9 +6,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReversePipe } from './pipes/reverse.pipe';
-import { TimeAgoPipe } from './pipes/time-ago.pipe';
-import { HighlightDirective } from './directives/highlight.directive';
 
 import { SwiperModule } from 'swiper/angular';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -22,9 +19,6 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
 @NgModule({
   declarations: [
     AppComponent,
-    ReversePipe,
-    TimeAgoPipe,
-    HighlightDirective,
     NotFoundComponent,
     LoginComponent,
     RegisterComponent,
