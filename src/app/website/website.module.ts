@@ -5,23 +5,17 @@ import { SwiperModule } from 'swiper/angular';
 import { WebsiteRoutingModule } from './website-routing.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from './pages/home/home.component';
-import { CategoryComponent } from './pages/category/category.component';
+
 import { MycartComponent } from './pages/mycart/mycart.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { ImgComponent } from './components/img/img.component';
-import { ProductsComponent } from './components/products/products.component';
-import { ListProductsComponent } from './components/list-products/list-products.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CategoryComponent,
     MycartComponent,
-    ImgComponent,
-    ProductsComponent,
-    ListProductsComponent,
     HeaderComponent,
     ProductDetailComponent,
     LayoutComponent
@@ -29,7 +23,8 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    SwiperModule
+    SwiperModule,
+    SharedModule
   ]
 })
 export class WebsiteModule { }

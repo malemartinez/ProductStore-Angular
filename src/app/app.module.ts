@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +32,8 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    SwiperModule
+    SwiperModule,
+    QuicklinkModule
   ],
   providers: [
     {
