@@ -12,11 +12,11 @@ export class ProfileComponent implements OnInit {
 
   user : User | null = null;
 
-  constructor( private authSrvice: AuthService) { }
+  constructor( private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authSrvice.profile()
-    .subscribe(rta => this.user = rta )
+    this.authService.userState$
+    .subscribe()
   }
 
 }

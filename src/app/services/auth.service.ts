@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Auth } from 'src/models/auth.model';
 import { User } from 'src/models/users.model';
-import { switchMap, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { TokenService } from './token.service';
 import { addToken } from '../Interceptors/token-interceptor.interceptor';
 
@@ -13,6 +13,9 @@ import { addToken } from '../Interceptors/token-interceptor.interceptor';
 export class AuthService {
 
   private apiUrl = `${environment.API_URL}/api/v1/auth`;
+
+  private userInitialState = new BehaviorSubject<User | null>(null);
+  userState$ = this.userInitialState.asObservable(); //observador
 
   constructor(
     private http : HttpClient,
@@ -37,7 +40,9 @@ export class AuthService {
       //   Authorization: `Bearer ${token}`,
       //   // 'Content-type': 'application/json'
       // }
-    })
+    }).pipe(
+      tap(user => this.userInitialState.next(user))
+    )
   }
 
   loginAndGet(email:string , password:string){

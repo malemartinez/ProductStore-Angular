@@ -38,6 +38,8 @@ export class HeaderComponent implements OnInit {
       this.counter = products.length
     })
     this.getAllCategories()
+    this.authService.userState$
+    .subscribe(data => this.profile = data)
   }
 
   getAllCategories(){
@@ -66,9 +68,7 @@ export class HeaderComponent implements OnInit {
     //   }
     //   ))
     this.authService.loginAndGet("maleja@mail.com", "ByeHolis")
-    .subscribe(user => {
-      this.profile = user
-    })
+    .subscribe(()=> this.router.navigate(['/profile']))
   }
 
   logout(){
