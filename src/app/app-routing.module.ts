@@ -5,7 +5,7 @@ import { QuicklinkStrategy } from 'ngx-quicklink';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CustomPreloadService } from './services/custom-preload.service';
 
-import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 
 const routes: Routes = [
@@ -18,6 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'cms',
+    canActivate:[AdminGuard],
     loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule)
   },
   {
