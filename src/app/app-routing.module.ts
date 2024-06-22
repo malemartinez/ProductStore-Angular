@@ -5,6 +5,8 @@ import { QuicklinkStrategy } from 'ngx-quicklink';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CustomPreloadService } from './services/custom-preload.service';
 
+import { AuthGuard } from './guards/auth.guard';
+
 
 const routes: Routes = [
   {

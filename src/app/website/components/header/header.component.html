@@ -46,7 +46,9 @@
     <div class="info">
       <div class="account">
         <button *ngIf="!profile; else  elseBock "  (click)="login()">Login</button>
-        <ng-template #elseBock>{{profile?.name}}</ng-template>
+        <ng-template #elseBock>
+          <a routerLink="/profile">{{profile?.name}}</a>
+        </ng-template>
       </div>
       <button  (click)="createUser()">Crear usuario</button>
       <!-- <button (click)="getProfile()">Perfil</button> -->

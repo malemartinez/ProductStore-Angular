@@ -6,9 +6,10 @@ import { MycartComponent } from './pages/mycart/mycart.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NotFoundComponent } from '../pages/not-found/not-found.component';
 import { LoginComponent } from '../pages/login/login.component';
-import { ProfileComponent } from '../pages/profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RecoveryComponent } from '../pages/recovery/recovery.component';
 import { RegisterComponent } from '../pages/register/register.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -54,6 +55,7 @@ const routes: Routes = [
       },
       {
         path:'profile',
+        canActivate: [AuthGuard],
         component: ProfileComponent
       },
       // {
