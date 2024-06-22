@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { Router } from '@angular/router';
 
 import { StoreService } from 'src/app/services/store.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Category } from 'src/models/products.model';
 import { User } from 'src/models/users.model';
+
 
 @Component({
   selector: 'app-header',
@@ -25,7 +27,8 @@ export class HeaderComponent implements OnInit {
     private storeService:StoreService ,
     private authService: AuthService ,
     private usersService: UsersService,
-    private categoriesService:CategoriesService
+    private categoriesService:CategoriesService,
+    private router: Router
   ) {
 
   }
@@ -66,6 +69,12 @@ export class HeaderComponent implements OnInit {
     .subscribe(user => {
       this.profile = user
     })
+  }
+
+  logout(){
+    this.authService.logout();
+    this.profile=null;
+    this.router.navigate(['/login'])
   }
 
 

@@ -48,6 +48,7 @@
         <button *ngIf="!profile; else  elseBock "  (click)="login()">Login</button>
         <ng-template #elseBock>
           <a routerLink="/profile">{{profile?.name}}</a>
+          <button (click)="logout()">LogOut</button>
         </ng-template>
       </div>
       <button  (click)="createUser()">Crear usuario</button>
